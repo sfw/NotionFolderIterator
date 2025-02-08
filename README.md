@@ -48,7 +48,7 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 	```
 	Edit .env with a line containing your Notion integration token:
 	```
-	NOTION_TOKEN=secret_yourIntegrationTokenHere
+	NOTION_TOKEN=ntn_secret_yourIntegrationTokenHere
 	```
 	Make sure not to commit this file to version control if it contains secrets.
 
