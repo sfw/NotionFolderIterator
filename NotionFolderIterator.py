@@ -7,6 +7,8 @@ import logging
 from dotenv import load_dotenv
 from notion_client import Client
 from notion_client.errors import APIResponseError
+from striprtf.striprtf import rtf_to_text
+from docx import Document 
 
 # -------------------------------------------------
 # Setup Logging
@@ -174,7 +176,8 @@ def sync_folder_to_notion(folder_path: str, parent_page_id: str):
         else:
             filename, extension = os.path.splitext(item)
             logging.info(f"Processing file '{item_path}' (extension: '{extension}')")
-            if extension.lower() in [".txt", ".md", ".doc", ".rtf"]:
+            ext_lower = extension.lower()
+            if ext_lower in [".txt", ".md"]:
                 try:
                     with open(item_path, "r", encoding="utf-8") as f:
                         file_content = f.read()
@@ -183,12 +186,35 @@ def sync_folder_to_notion(folder_path: str, parent_page_id: str):
                     logging.error(f"Error reading file '{item_path}': {e}")
                     file_content = f"Could not parse file {item}"
 
+            elif ext_lower == ".docx":
+                # Use python-docx to parse
                 try:
-                    file_page_id = create_notion_page(parent_page_id, filename)
-                    append_text_block(file_page_id, file_content)
-                except Exception:
-                    logging.warning(f"Failed to process text file '{item_path}'.")
-                    continue
+                    from docx import Document  # Move to top-level imports if you like
+                    doc = Document(item_path)
+                    # Concatenate all paragraphs
+                    file_content = "\n".join([para.text for para in doc.paragraphs])
+                except Exception as e:
+                    logging.error(f"Error parsing DOCX file '{item_path}': {e}")
+                    file_content = f"Could not parse docx file {item}"
+
+            elif ext_lower == ".rtf":
+                # Use striprtf to parse
+                try:
+                    from striprtf.striprtf import rtf_to_text  # Move to top-level imports if you like
+                    with open(item_path, "r", encoding="utf-8") as rtf_file:
+                        raw_rtf = rtf_file.read()
+                    file_content = rtf_to_text(raw_rtf)
+                except Exception as e:
+                    logging.error(f"Error parsing RTF file '{item_path}': {e}")
+                    file_content = f"Could not parse rtf file {item}"
+
+            elif ext_lower == ".doc":
+                # Basic approach #1: Skip or stub out
+                file_content = (
+                    "DOC files are not directly supported. "
+                    "Please convert .doc to .docx or text before importing."
+                )
+
             else:
                 try:
                     file_page_id = create_notion_page(parent_page_id, filename)
@@ -196,6 +222,13 @@ def sync_folder_to_notion(folder_path: str, parent_page_id: str):
                 except Exception:
                     logging.warning(f"Failed to process file '{item_path}'.")
                     continue
+                
+        try:
+            file_page_id = create_notion_page(parent_page_id, filename)
+            append_text_block(file_page_id, file_content)
+        except Exception:
+            logging.warning(f"Failed to process text file '{item_path}'.")
+            continue
 
 def main():
     parser = argparse.ArgumentParser(description="Mirror a local folder structure into a Notion page.")
