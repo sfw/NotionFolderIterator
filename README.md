@@ -8,7 +8,7 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 
 1. **Recursive Mirroring**  
    - Folders become pages, containing child pages for subfolders or files.  
-   - Text-based files (`.txt`, `.md`, `.doc`, `.rtf`) are read and inserted into Notion pages as text blocks.  
+   - Text-based files (`.txt`, `.md`, `.docx`, `.rtf`) are read and inserted into Notion pages as text blocks.  
    - Other file formats get a page with a *File* block (using a dummy URL in this example because the Notion API does not current support file upload).
 
 2. **Chunked Text**  
