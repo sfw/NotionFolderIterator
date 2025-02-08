@@ -70,16 +70,12 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 
 	In your browser, open the Notion page. The URL looks like:
 	
-	https://www.notion.so/YourPageName-1949f721d04280d0b326c1b3643cd2e5
+	https://www.notion.so/YourPageName-XXNXNXNXNXNXNXNXNXNXNXNXNXN
 
 
 	Copy only the UUID portion after the last - (32 or 36 characters). For example:
 
-	1949f721d04280d0b326c1b3643cd2e5
-	
-	or
-	
-	1949f721-d042-80d0-b326-c1b3643cd2e5
+	XXNXNXNXNXNXNXNXNXNXNXNXNXN
 
 	That is the ID you will pass via -p/--page when running the script.
 
