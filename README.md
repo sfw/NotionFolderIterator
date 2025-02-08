@@ -83,7 +83,7 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 
 Once your .env is configured and you have your Notion page ID, run:
 ```
-python NotionFolderIterator.py --page "1949f721d04280d0b326c1b3643cd2e5" --folder "/path/to/local/folder"
+python NotionFolderIterator.py --page "XXNXNXNXNXNXNXNXNXNXNXNXNXN" --folder "/path/to/local/folder"
 ```
 **Command line options:**
 - -p, --page (required): The parent Notion page ID (UUID).
@@ -92,7 +92,7 @@ python NotionFolderIterator.py --page "1949f721d04280d0b326c1b3643cd2e5" --folde
 
 ## Example
 ```
-python NotionFolderIterator.py -p "1949f721d04280d0b326c1b3643cd2e5" -f "/Users/myuser/Documents/Projects"
+python NotionFolderIterator.py -p "XXNXNXNXNXNXNXNXNXNXNXNXNXN" -f "/Users/myuser/Documents/Projects"
 ```
 The script will:
 1.	Recursively traverse "/Users/myuser/Documents/Projects".
@@ -108,7 +108,7 @@ The script will:
 ## Contributing
 
 Feel free to open issues or pull requests if you’d like to extend or improve this script:
-- Improved file parsing
+- Improved file parsing -  extraction media, handling of other formats.
 - Real file uploads instead of dummy URLs
 
 ## License
