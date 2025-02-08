@@ -30,7 +30,7 @@ This script mirrors a local folder structure into a specified Notion page. It cr
    ```bash
    git clone https://github.com/your-username/NotionFolderIterator.git
    cd NotionFolderIterator
-```
+   ```
 
 
 2.	Install Dependencies
