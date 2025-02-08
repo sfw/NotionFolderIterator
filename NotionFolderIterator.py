@@ -92,7 +92,10 @@ def sync_folder_to_notion(folder_path: str, parent_page_id: str):
     - Text-like files become pages with text blocks.
     - Other files become pages with a file block (or you can embed them however you like).
     """
-    for item in os.listdir(folder_path):
+
+    items = sorted(os.listdir(folder_path)) 
+
+    for item in items:
         # Skip hidden files or folders if desired
         if item.startswith('.'):
             continue
