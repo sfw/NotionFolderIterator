@@ -92,6 +92,7 @@ python NotionFolderIterator.py --page "1949f721d04280d0b326c1b3643cd2e5" --folde
 **Command line options:**
 - -p, --page (required): The parent Notion page ID (UUID).
 - -f, --folder (required): The path to the local root folder you want to be mirrored into Notion.
+- -d, --debug: Verbose debug logging to console
 
 ## Example
 ```
@@ -113,7 +114,6 @@ The script will:
 Feel free to open issues or pull requests if you’d like to extend or improve this script:
 - Improved file parsing
 - Real file uploads instead of dummy URLs
-- Error handling and logging
 
 ## License
 
