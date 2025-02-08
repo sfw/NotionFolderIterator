@@ -2,14 +2,14 @@
 
 Using AI to facilitate the BS tasks in my life - Part II.
 
-This script mirrors a local folder structure into a specified Notion page. It creates pages for folders and files, adding file contents or file blocks as needed.
+This script mirrors a local folder structure into a specified Notion page. It creates pages for folders and files, adding file contents to child pages.
 
 ## Features
 
 1. **Recursive Mirroring**  
    - Folders become pages, containing child pages for subfolders or files.  
    - Text-based files (`.txt`, `.md`, `.doc`, `.rtf`) are read and inserted into Notion pages as text blocks.  
-   - Other file formats get a page with a *File* block (using a dummy URL in this example).
+   - Other file formats get a page with a *File* block (using a dummy URL in this example because the Notion API does not current support file upload).
 
 2. **Chunked Text**  
    - Handles Notion’s limit of **2,000 characters per block** by chunking larger text into multiple blocks.
@@ -104,7 +104,7 @@ The script will:
 4.	For all other file types, create a file block with a dummy external link (you can update it to a real hosting mechanism if needed).
 
 ## Notes
-- File Uploads (FUTURE FUNCTIONALITY): In this example, non-text files are added with a “dummy URL.” If you need to truly upload files, you’ll need to implement Notion’s file upload approach or host files publicly and pass in the real URLs.
+- File Uploads (FUTURE FUNCTIONALITY): non-text files are added with a “dummy URL.” If you need to truly upload files, you’ll need to implement an approach tohost files publicly and pass in the real URLs.
 - Text Parsing: For .doc or .rtf, the script tries to read as plain text. For more robust parsing, install libraries like python-docx or an RTF parser.
 - Chunked Blocks: Notion imposes a 2,000-character limit per text block, so text files longer than that are split across multiple paragraphs.
 
