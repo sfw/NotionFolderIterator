@@ -25,49 +25,48 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 
 ## Setup
 
-1. **Clone or Download this Repository**  
-	   ```bash
-	   git clone https://github.com/your-username/NotionFolderIterator.git
-	   cd NotionFolderIterator
-	   ```
+1. **Clone or Download this Repository**
+   	```
+	git clone https://github.com/your-username/NotionFolderIterator.git
+	cd NotionFolderIterator
+	```
 
 
-2.	Install Dependencies
+2.	**Install Dependencies**
 	```
 	pip install -r requirements.txt
 	```
 
-This should install:
-	•	notion-client (Python wrapper for Notion API)
-	•	python-dotenv (for loading environment variables from .env)
-	•	Any other dependencies you might have listed
+	This should install:
+	- notion-client (Python wrapper for Notion API)
+	- python-dotenv (for loading environment variables from .env)
 
-3.	Create Your .env File
+3.	**Create Your .env File**
 	Inside the project folder, create a file named .env:
-	
+	```
 	touch .env
-	
+	```
 	Edit .env with a line containing your Notion integration token:
-	
+	```
 	NOTION_TOKEN=secret_yourIntegrationTokenHere
-	
+	```
 	Make sure not to commit this file to version control if it contains secrets.
 
 ## Connecting to Notion
 
-1. Create a Notion Internal Integration
-	a.	Go to Notion My Integrations and click “New integration”.
-	b.	Choose a name (e.g., “Folder Mirror App”), and select the workspace it belongs to.
-	c.	Under Capabilities, make sure permission is given for reading/writing pages and blocks.
-	d.	Copy the Internal Integration Token (starts with secret_...).
+1. **Create a Notion Internal Integration**
+	- Go to Notion My Integrations and click “New integration”.
+	- Choose a name (e.g., “Folder Mirror App”), and select the workspace it belongs to.
+	- Under Capabilities, make sure permission is given for reading/writing pages and blocks.
+	- Copy the Internal Integration Token (starts with secret_...).
 
-2. Share Your Target Notion Page With the Integration
-	a.	In Notion, open the page you want to use as the parent page (the “destination page”).
-	b.	Click Share (top right).
-	c.	Select “Connections…” → “Select Integration” → choose your integration.
-	d.	Save. Now your integration has permission to create child pages/blocks inside that page.
+2. **Share Your Target Notion Page With the Integration**
+	- In Notion, open the page you want to use as the parent page (the “destination page”).
+	- Click Share (top right).
+	- Select “Connections…” → “Select Integration” → choose your integration.
+	- Save. Now your integration has permission to create child pages/blocks inside that page.
 
-3. Obtain the Notion Page ID
+3. **Obtain the Notion Page ID**
 
 	In your browser, open the Notion page. The URL looks like:
 	
@@ -87,38 +86,34 @@ This should install:
 ## Usage
 
 Once your .env is configured and you have your Notion page ID, run:
-
-python NotionFolderIterator.py \
-    --page "1949f721d04280d0b326c1b3643cd2e5" \
-    --folder "/path/to/local/folder"
-
-Command line options:
-	•	-p, --page (required): The parent Notion page ID (UUID).
-	•	-f, --folder (required): The path to the local root folder you want to be mirrored into Notion.
+```
+python NotionFolderIterator.py --page "1949f721d04280d0b326c1b3643cd2e5" --folder "/path/to/local/folder"
+```
+**Command line options:**
+- -p, --page (required): The parent Notion page ID (UUID).
+- -f, --folder (required): The path to the local root folder you want to be mirrored into Notion.
 
 ## Example
-
-python NotionFolderIterator.py \
-    -p "1949f721d04280d0b326c1b3643cd2e5" \
-    -f "/Users/myuser/Documents/Projects"
-
+```
+python NotionFolderIterator.py -p "1949f721d04280d0b326c1b3643cd2e5" -f "/Users/myuser/Documents/Projects"
+```
 The script will:
-	1.	Recursively traverse "/Users/myuser/Documents/Projects".
-	2.	For each folder, create a corresponding page in Notion.
-	3.	For .txt, .md, .doc, .rtf files, read text content into paragraph blocks.
-	4.	For all other file types, create a file block with a dummy external link (you can update it to a real hosting mechanism if needed).
+1.	Recursively traverse "/Users/myuser/Documents/Projects".
+2.	For each folder, create a corresponding page in Notion.
+3.	For .txt, .md, .doc, .rtf files, read text content into paragraph blocks.
+4.	For all other file types, create a file block with a dummy external link (you can update it to a real hosting mechanism if needed).
 
 ## Notes
-	•	File Uploads: In this example, non-text files are added with a “dummy URL.” If you need to truly upload files, you’ll need to implement Notion’s file upload approach or host files publicly and pass in the real URLs.
-	•	Text Parsing: For .doc or .rtf, the script tries to read as plain text. For more robust parsing, install libraries like python-docx or an RTF parser.
-	•	Chunked Blocks: Notion imposes a 2,000-character limit per text block, so text files longer than that are split across multiple paragraphs.
+- File Uploads (FUTURE FUNCTIONALITY): In this example, non-text files are added with a “dummy URL.” If you need to truly upload files, you’ll need to implement Notion’s file upload approach or host files publicly and pass in the real URLs.
+- Text Parsing: For .doc or .rtf, the script tries to read as plain text. For more robust parsing, install libraries like python-docx or an RTF parser.
+- Chunked Blocks: Notion imposes a 2,000-character limit per text block, so text files longer than that are split across multiple paragraphs.
 
 ## Contributing
 
 Feel free to open issues or pull requests if you’d like to extend or improve this script:
-	•	Improved file parsing
-	•	Real file uploads instead of dummy URLs
-	•	Error handling and logging
+- Improved file parsing
+- Real file uploads instead of dummy URLs
+- Error handling and logging
 
 ## License
 
