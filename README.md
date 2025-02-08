@@ -1,6 +1,7 @@
 # Notion Folder Iterator
 
-Using AI to facilitate the BS tasks in my life - Part II
+Using AI to facilitate the BS tasks in my life - Part II.
+
 This script mirrors a local folder structure into a specified Notion page. It creates pages for folders and files, adding file contents or file blocks as needed.
 
 ## Features
