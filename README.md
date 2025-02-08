@@ -106,7 +106,7 @@ The script will:
 
 ## Notes
 - File Uploads (FUTURE FUNCTIONALITY): non-text files are added with a “dummy URL.” If you need to truly upload files, you’ll need to implement an approach tohost files publicly and pass in the real URLs.
-- Text Parsing: For .doc or .rtf, the script tries to read as plain text. For more robust parsing, install libraries like python-docx or an RTF parser.
+- Text Parsing: For .docx or .rtf, the script reads only the text. .doc is fully unsupported.
 - Chunked Blocks: Notion imposes a 2,000-character limit per text block, so text files longer than that are split across multiple paragraphs.
 
 ## Contributing
