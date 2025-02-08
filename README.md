@@ -27,63 +27,63 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 ## Setup
 
 1. **Clone or Download this Repository**  
-   ```bash
-   git clone https://github.com/your-username/NotionFolderIterator.git
-   cd NotionFolderIterator
-   ```
+	   ```bash
+	   git clone https://github.com/your-username/NotionFolderIterator.git
+	   cd NotionFolderIterator
+	   ```
 
 
 2.	Install Dependencies
-```
-pip install -r requirements.txt
-```
+	```
+	pip install -r requirements.txt
+	```
 
 This should install:
 	•	notion-client (Python wrapper for Notion API)
 	•	python-dotenv (for loading environment variables from .env)
 	•	Any other dependencies you might have listed
 
-4.	Create Your .env File
-Inside the project folder, create a file named .env:
-
-touch .env
-
-Edit .env with a line containing your Notion integration token:
-
-NOTION_TOKEN=secret_yourIntegrationTokenHere
-
-Make sure not to commit this file to version control if it contains secrets.
+3.	Create Your .env File
+	Inside the project folder, create a file named .env:
+	
+	touch .env
+	
+	Edit .env with a line containing your Notion integration token:
+	
+	NOTION_TOKEN=secret_yourIntegrationTokenHere
+	
+	Make sure not to commit this file to version control if it contains secrets.
 
 ## Connecting to Notion
 
 1. Create a Notion Internal Integration
 	a.	Go to Notion My Integrations and click “New integration”.
 	b.	Choose a name (e.g., “Folder Mirror App”), and select the workspace it belongs to.
-	c.	Under Capabilities, make sure it has permission for reading/writing pages and blocks.
+	c.	Under Capabilities, make sure permission is given for reading/writing pages and blocks.
 	d.	Copy the Internal Integration Token (starts with secret_...).
 
 2. Share Your Target Notion Page With the Integration
 	a.	In Notion, open the page you want to use as the parent page (the “destination page”).
 	b.	Click Share (top right).
-	c.	Select “Invite…” → “Select Integration” → choose your integration.
-	d.	Save. Now your integration has the necessary permission to create child pages/blocks inside that page.
+	c.	Select “Connections…” → “Select Integration” → choose your integration.
+	d.	Save. Now your integration has permission to create child pages/blocks inside that page.
 
 3. Obtain the Notion Page ID
-	•	In your browser, open the Notion page. The URL looks like:
 
-https://www.notion.so/YourPageName-1949f721d04280d0b326c1b3643cd2e5
-
-
-	•	Copy only the UUID portion after the last - (32 or 36 characters). For example:
-
-1949f721d04280d0b326c1b3643cd2e5
-
-or
-
-1949f721-d042-80d0-b326-c1b3643cd2e5
+	In your browser, open the Notion page. The URL looks like:
+	
+	https://www.notion.so/YourPageName-1949f721d04280d0b326c1b3643cd2e5
 
 
-	•	That is the ID you will pass via --page when running the script.
+	Copy only the UUID portion after the last - (32 or 36 characters). For example:
+
+	1949f721d04280d0b326c1b3643cd2e5
+	
+	or
+	
+	1949f721-d042-80d0-b326-c1b3643cd2e5
+
+	That is the ID you will pass via -p/--page when running the script.
 
 Usage
 
@@ -95,7 +95,7 @@ python NotionFolderIterator.py \
 
 Command line options:
 	•	-p, --page (required): The parent Notion page ID (UUID).
-	•	-f, --folder (required): The path to the local root folder you want mirrored into Notion.
+	•	-f, --folder (required): The path to the local root folder you want to be mirrored into Notion.
 
 Example
 
