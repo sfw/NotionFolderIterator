@@ -1,8 +1,6 @@
-# NotionFolderIterator
-Wanted to automate some folder structures and file contents into notion easily.
-
 # Notion Folder Iterator
 
+Using AI to facilitate the BS tasks in my life - Part II
 This script mirrors a local folder structure into a specified Notion page. It creates pages for folders and files, adding file contents or file blocks as needed.
 
 ## Features
@@ -85,7 +83,7 @@ This should install:
 
 	That is the ID you will pass via -p/--page when running the script.
 
-Usage
+## Usage
 
 Once your .env is configured and you have your Notion page ID, run:
 
@@ -97,7 +95,7 @@ Command line options:
 	•	-p, --page (required): The parent Notion page ID (UUID).
 	•	-f, --folder (required): The path to the local root folder you want to be mirrored into Notion.
 
-Example
+## Example
 
 python NotionFolderIterator.py \
     -p "1949f721d04280d0b326c1b3643cd2e5" \
