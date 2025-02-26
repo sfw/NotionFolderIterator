@@ -27,7 +27,7 @@ This script mirrors a local folder structure into a specified Notion page. It cr
 
 1. **Clone or Download this Repository**
    	```
-	git clone https://github.com/your-username/NotionFolderIterator.git
+	git clone https://github.com/sfw/NotionFolderIterator.git
 	cd NotionFolderIterator
 	```
 
